@@ -115,7 +115,7 @@ void DiscordTranslateText( const char* text )
 			if ( lastCharacterIsColon == true )
 				result += " ";
 
-			lastCharacterIsColon = ( c == ':' );
+			lastCharacterIsColon = ( c != ' ' );
 
 			const char tempString[2] = { c , 0 };
 			result += std::string( tempString );
