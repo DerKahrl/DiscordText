@@ -1,0 +1,145 @@
+<html>
+
+	<head>
+		<title>Discord Text</title>
+
+		<style>
+			body {
+				background-color: black;
+			}
+			
+			#TextField {
+				resize: none;
+				
+				width: 90%;
+				height: 70%;
+				
+				background-color: darkgray;
+				color: black;
+				
+				font-family: Arial;
+				font-size: 20px;
+				
+				margin: auto 5% auto 5%;
+				border: 2px solid black;
+				padding: 10px;
+			}
+			
+			#Button {
+				width: 90%;
+				height: 10%;
+				font-weight: bold;
+				
+				font-family: Arial;
+				font-size: 15px;
+				
+				margin: auto 5% auto 5%;
+				border: 2px solid black;
+				padding: 0px;
+				cursor: pointer;
+			}
+			
+			@media only screen and (max-height: 250px) {
+				#Button {
+				
+					height: 25px;
+				}
+			}
+		</style>
+		
+	</head>
+
+	<body>
+		<textarea id="TextField">Mathe ist liebe!</textarea>
+		
+		<button id="Button" onclick="onButton1Click()">Convert</button>
+		<button id="Button" onclick="onButton2Click()">Clear</button>
+		
+		
+		<script>
+		var characterTranslation = [
+			
+			//------ Numbers ------
+			[ '0', /*=>*/ ":zero: "		],
+			[ '1', /*=>*/ ":one: "		],
+			[ '2', /*=>*/ ":two: "		],
+			[ '3', /*=>*/ ":three: "	],
+			[ '4', /*=>*/ ":four: "		],
+			[ '5', /*=>*/ ":five: " 	],
+			[ '6', /*=>*/ ":six: "  	],
+			[ '7', /*=>*/ ":seven: "	],
+			[ '8', /*=>*/ ":eight: "	],
+			[ '9', /*=>*/ ":nine: " 	],
+			//---------------------
+
+			[ '#', /*=>*/ ":hash: " 	],
+			[ '*', /*=>*/ ":asterisk: " ],
+			[ '!', /*=>*/ ":exclamation: " ],
+			[ '?', /*=>*/ ":question: " ],
+
+			[ '/', /*=>*/ "**÷** " ],
+			[ ':', /*=>*/ "**÷** " ],
+			[ '÷', /*=>*/ "**÷** " ],
+
+			[ '+', /*=>*/ "**+** " ],
+			[ '-', /*=>*/ "**-** " ],
+			[ '=', /*=>*/ "**=** " ],
+			[ ' ', /*=>*/ "      " ],
+		];
+		
+		function translateCharacter( c )
+		{
+			if ( (c >= 'A' && c <= 'Z') || 
+				 (c >= 'a' && c <= 'z') )
+			{				
+				return ":regional_indicator_" + c.toLowerCase( ) + ":";
+			}
+	
+			for( var i = 0; i < characterTranslation.length; i++ )
+			{
+				if ( c == characterTranslation[i][0] )
+				   return characterTranslation[i][1];
+			}
+			
+			return c;
+		}
+		
+		function onButton1Click( )
+		{
+			var TextField = document.getElementById("TextField");
+			
+			var lastCharacterIsColon = false;
+			
+			var strInput = TextField.value;
+			
+			var strOutput = "";
+			for( var i = 0; i < strInput.length; i++ )
+			{
+				if ( lastCharacterIsColon == true )
+					strOutput += " ";
+				
+				var c = strInput.charAt( i );
+				strOutput += translateCharacter( c );
+				
+				var lastCharacter = strOutput.charAt( strOutput.length - 1 );
+				lastCharacterIsColon = ( lastCharacter != ' ' );
+			}
+			TextField.value = strOutput;
+			
+			//Copy to clipboard
+			TextField.select();
+			TextField.setSelectionRange(0, 99999); /*For mobile devices*/
+			document.execCommand("copy");
+		}
+		
+		function onButton2Click( )
+		{
+			var TextField = document.getElementById("TextField");
+			TextField.value = "";
+		}
+		
+		</script>
+		
+	</body>
+
+</html>
