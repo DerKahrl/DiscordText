@@ -29,9 +29,9 @@ Tuple<const char, const char*> characterTranslation[] =
 	{ '!', /*=>*/ ":exclamation:" },
 	{ '?', /*=>*/ ":question:" },
 
-	{ '/', /*=>*/ "**÷**" },
-	{ ':', /*=>*/ "**÷**" },
-	{ '÷', /*=>*/ "**÷**" },
+	{ '/', /*=>*/ "**Ã·**" },
+	{ ':', /*=>*/ "**Ã·**" },
+	{ 'Ã·', /*=>*/ "**Ã·**" },
 
 	{ '+', /*=>*/ "**+**" },
 	{ '-', /*=>*/ "**-**" },
@@ -68,7 +68,7 @@ int main( )
 const char* translateCharacter( const char c )
 {
 	if ( (c >= 'A' && c <= 'Z') || 
-		 (c >= 'a' && c <= 'z') )
+	     (c >= 'a' && c <= 'z') )
 	{
 		const char t = c
 			
