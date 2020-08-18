@@ -108,21 +108,21 @@
 		{
 			var TextField = document.getElementById("TextField");
 			
-			var lastCharacterIsColon = false;
+			var lastCharacterIsNotSpace = false;
 			
 			var strInput = TextField.value;
 			
 			var strOutput = "";
 			for( var i = 0; i < strInput.length; i++ )
 			{
-				if ( lastCharacterIsColon == true )
+				if ( lastCharacterIsNotSpace == true )
 					strOutput += " ";
 				
 				var c = strInput.charAt( i );
 				strOutput += translateCharacter( c );
 				
 				var lastCharacter = strOutput.charAt( strOutput.length - 1 );
-				lastCharacterIsColon = ( lastCharacter != ' ' );
+				lastCharacterIsNotSpace = ( lastCharacter != ' ' );
 			}
 			TextField.value = strOutput;
 			

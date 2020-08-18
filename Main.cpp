@@ -94,7 +94,7 @@ void DiscordTranslateText( const char* text )
 
 	size_t textlenght = strlen(text);
 
-	bool lastCharacterIsColon = false;
+	bool lastCharacterIsNotSpace = false;
 
 	for (size_t i = 0; i < textlenght; i++)
 	{
@@ -103,19 +103,19 @@ void DiscordTranslateText( const char* text )
 		auto translation = translateCharacter( c );
 		if ( translation != nullptr )
 		{
-			if ( lastCharacterIsColon == true )
+			if ( lastCharacterIsNotSpace == true )
 				result += " ";
 
 			result += translation;
 
-			lastCharacterIsColon = true;
+			lastCharacterIsNotSpace = true;
 		}
 		else
 		{
-			if ( lastCharacterIsColon == true )
+			if ( lastCharacterIsNotSpace == true )
 				result += " ";
 
-			lastCharacterIsColon = ( c != ' ' );
+			lastCharacterIsNotSpace = ( c != ' ' );
 
 			const char tempString[2] = { c , 0 };
 			result += std::string( tempString );
